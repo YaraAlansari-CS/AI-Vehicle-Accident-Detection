@@ -10,187 +10,161 @@
 
 ---
 
+## 📄 Documentation
+
+- **Research Paper:** [`Research_Paper.pdf`](./docs/Accidents_Detection_Research_Paper.pdf)
+- **Dataset Information:** [`DATASET.md`](./dataset/DATASET.md)
+
+---
+
 ## 📌 Overview
 
-This research addresses the critical challenge of detecting vehicle accidents in **adverse weather conditions** (rain, fog, snow, low light). Poor visibility, environmental noise, and complex scenes hinder accurate detection, yet reliable accident detection is essential for autonomous driving systems, traffic surveillance, and emergency response.
+This research presents a **hybrid deep learning framework** for detecting **vehicle accidents under adverse weather conditions**, including rain, fog, snow, and low-light environments.
 
-We propose a **hybrid deep learning framework** combining:
-- **YOLOv10** – Real-time object detection (speed & efficiency).
-- **VGG19** – Deep feature extraction and classification (accuracy & detail).
-- **Adaptive Preprocessing** – Contrast enhancement and dehazing to improve image clarity.
+Poor visibility and environmental noise make accident detection particularly challenging for intelligent transportation systems. To address this problem, this work combines the strengths of **YOLOv10** for real-time object detection and **VGG19** for deep feature extraction and classification, improving accident detection accuracy while reducing false positives.
+
+The proposed framework contributes to safer roads by supporting autonomous driving systems, traffic monitoring, and faster emergency response.
+
+---
+
+## 🔄 Proposed Framework
+
+<p align="center">
+  <img src="./assets/workflow.png" width="900">
+</p>
+
+The proposed framework integrates image preprocessing, YOLOv10 object detection, and VGG19 classification to improve accident detection performance under adverse weather conditions.
 
 ---
 
 ## 🎯 Key Highlights
 
-| **Aspect** | **Details** |
-| :--- | :--- |
-| **Dataset** | 3,480 annotated images under various weather conditions (rain, fog, snow, low light). |
-| **YOLOv10 Precision** | Achieved **54.2%** (epoch 50), **63.2%** (epoch 100), and **81.8%** (epoch 200). |
-| **VGG19 Performance** | Highest accuracy, precision, recall, and F1-score at epoch 200. |
-| **Key Finding** | Hybrid model significantly reduces false positives and outperforms single-model approaches. |
+| Feature | Description |
+|---------|-------------|
+| **Dataset** | 3,480 annotated road images collected under different weather conditions |
+| **Detection Model** | YOLOv10 |
+| **Classification Model** | VGG19 |
+| **Annotation Tool** | Roboflow |
+| **Training Platform** | Google Colab |
+| **Best YOLOv10 Precision** | **81.8%** (Epoch 200) |
+| **Key Contribution** | Hybrid framework combining object detection and image classification |
 
 ---
 
-## 📊 Dataset Distribution
+## 🧠 Model Architecture
 
-### YOLOv10 Dataset (1,307 images)
-| **Split** | **Images** |
-| :--- | :--- |
-| **Training** | 915 |
-| **Validation** | 261 |
-| **Testing** | 131 |
+### YOLOv10
+- Real-time object detection
+- Fast single-stage detector
+- Robust under adverse weather conditions
+- Best precision achieved at **81.8%**
 
-### VGG19 Dataset (1,679 images)
-| **Split** | **Total** | **Accident** | **Non-Accident** |
-| :--- | :--- | :--- | :--- |
-| **Training** | 1,175 | 596 | 579 |
-| **Validation** | 336 | 169 | 167 |
-| **Testing** | 168 | 90 | 78 |
+### YOLOv10 Performance
 
-All images were sourced from YouTube and annotated using the **Roboflow** platform.
+| Epoch | Precision | Recall | mAP@50 |
+|------:|---------:|-------:|-------:|
+| 50 | 54.2% | 45.7% | 44.6% |
+| 100 | 63.2% | 56.8% | 62.9% |
+| **200** | **81.8%** | **61.0%** | **72.5%** |
 
 ---
 
-## 🧠 Models & Architecture
+### VGG19
 
-### 1. YOLOv10 (Real-Time Detection)
-- **Purpose:** Fast, single-pass object detection.
-- **Strengths:** Real-time processing, handles complex scenes, reduces redundant bounding boxes (Non-Maximum Suppression).
-- **Performance:** Achieved **81.8% precision** at epoch 200.
+VGG19 was used to classify accident and non-accident images through deep feature extraction.
 
-| **Epoch** | **Precision (P)** | **Recall (R)** | **mAP 50%** | **mAP 50-95%** |
-| :--- | :--- | :--- | :--- | :--- |
-| 50 | 54.2% | 45.7% | 44.6% | 19.1% |
-| 100 | 63.2% | 56.8% | 62.9% | 27.8% |
-| 200 | **81.8%** | **61%** | **72.5%** | **22.9%** |
-
-### 2. VGG19 (Feature Extraction & Classification)
-- **Purpose:** Detailed feature extraction and classification.
-- **Strengths:** 16 convolutional layers + 3 fully connected layers, excels at detecting **subtle indicators** (minor vehicle damage, unusual object interactions).
-- **Best Performance:** Achieved highest accuracy, precision, recall, and F1-score at **epoch 200**.
-
-### 3. CNN Models (Baseline Comparison)
-- 7-layer CNN (with and without dropout)
-- 10-layer CNN (without dropout)
-- **Result:** VGG19 with fully connected layer consistently outperformed all CNN configurations.
+Compared with baseline CNN architectures, VGG19 consistently achieved the highest accuracy, precision, recall, and F1-score.
 
 ---
 
-## 📈 Results & Visualizations
+## 📈 Results
 
-### YOLOv10 Confusion Matrices
-| **Epoch** | **Confusion Matrix** |
-| :--- | :--- |
-| 50 | ![Confusion Matrix Epoch 50](./results/charts/yolov10_confusion_matrix_epoch50.png) |
-| 100 | ![Confusion Matrix Epoch 100](./results/charts/yolov10_confusion_matrix_epoch100.png) |
-| 200 | ![Confusion Matrix Epoch 200](./results/charts/yolov10_confusion_matrix_epoch200.png) |
+### Sample Prediction
 
-### Sample Detections
-| **Epoch** | **Training Batch** | **Validation Batch** |
-| :--- | :--- | :--- |
-| 50 | ![Train Batch 50](./results/sample_outputs/train_batch_epoch50.jpg) | ![Valid Batch 50](./results/sample_outputs/valid_batch_epoch50.jpg) |
-| 100 | ![Train Batch 100](./results/sample_outputs/train_batch_epoch100.jpg) | ![Valid Batch 100](./results/sample_outputs/valid_batch_epoch100.jpg) |
-| 200 | ![Train Batch 200](./results/sample_outputs/train_batch_epoch200.jpg) | ![Valid Batch 200](./results/sample_outputs/valid_batch_epoch200.jpg) |
+<p align="center">
+  <img src="./assets/sample_prediction.png" width="750">
+</p>
 
-### Loss Curves
-- **Epoch 50:** ![Loss Curves 50](./results/charts/yolov10_loss_curves_epoch50.png)
-- **Epoch 100:** ![Loss Curves 100](./results/charts/yolov10_loss_curves_epoch100.png)
-- **Epoch 200:** ![Loss Curves 200](./results/charts/yolov10_loss_curves_epoch200.png)
-
-### CNN vs VGG19 Performance Comparison
-| **Model** | **Epoch** | **Accuracy** | **Precision** | **Recall** | **F1-Score** |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| CNN (7-layer, no dropout) | 200 | Moderate | Moderate | Moderate | Moderate |
-| CNN (7-layer, with dropout) | 200 | Moderate | Moderate | Higher | Higher |
-| CNN (10-layer, no dropout) | 200 | Slightly Higher | Slightly Higher | Slightly Higher | Slightly Higher |
-| **VGG19 (with FC layer)** | **200** | **Highest** | **Highest** | **Highest** | **Highest** |
-| VGG19 (without FC layer) | 200 | Lower | Lower | Lower | Lower |
+Example predictions produced by the YOLOv10 model for accident detection under different weather conditions.
 
 ---
 
-## 🛠️ Technical Implementation
+### Confusion Matrix (Epoch 200)
 
-### Hardware & Environment
-- **Platform:** Google Colab (GPU acceleration).
-- **Frameworks:** TensorFlow, PyTorch.
-- **Libraries:** OpenCV, NumPy, Matplotlib, scikit-learn.
+<p align="center">
+  <img src="./assets/confusion_matrix.png" width="500">
+</p>
 
-### Hyperparameters
-| **Parameter** | **Value** |
-| :--- | :--- |
-| **Epochs** | 50, 100, 200 |
-| **Batch Size** | 32 |
-| **Learning Rate** | 0.001 |
-
-### Preprocessing Techniques
-- **Dehazing:** Improved clarity in foggy images.
-- **Contrast Adjustment:** Enhanced visibility in low-light conditions.
-- **Augmentation:** Applied to validation set for better generalization.
+The confusion matrix illustrates the final classification performance of the best-performing YOLOv10 model.
 
 ---
 
-## 📄 Full Paper
-- [Research Paper (PDF)](./paper/Research_Paper.pdf)
+### Training Curves
+
+<p align="center">
+  <img src="./assets/training_curves.png" width="750">
+</p>
+
+Training curves showing model convergence and performance improvements over 200 training epochs.
 
 ---
 
-## 🔑 Keywords
+## 🛠️ Technical Stack
 
-`Vehicle accident detection` `YOLOv10` `VGG19` `Adverse weather` `Deep learning` `Computer vision` `Object detection` `Real-time detection` `CNN` `Road safety` `Image processing` `Convolutional neural networks`
+| Category | Technology |
+|----------|------------|
+| Programming Language | Python |
+| Detection Model | YOLOv10 |
+| Classification Model | VGG19 |
+| Frameworks | PyTorch, TensorFlow |
+| Libraries | OpenCV, NumPy, Matplotlib, Scikit-learn |
+| Annotation | Roboflow |
+| Training Platform | Google Colab |
 
 ---
 
-## 🧪 Evaluation Metrics
+## 👩‍💻 My Contributions
 
-- **Precision (P):** TP / (TP + FP)
-- **Recall (R):** TP / (TP + FN)
-- **Accuracy:** (TP + TN) / (TP + TN + FP + FN)
-- **Mean Average Precision (mAP):** Average of AP across all classes.
-- **F1-Score:** Harmonic mean of precision and recall.
+As a **researcher and developer**, I participated in:
+
+- Designing the hybrid deep learning framework.
+- Collecting and annotating the dataset.
+- Training and fine-tuning YOLOv10 and VGG19.
+- Performing image preprocessing and data augmentation.
+- Evaluating model performance using Precision, Recall, Accuracy, mAP, and F1-score.
+- Analyzing experimental results.
+- Writing the complete research paper.
 
 ---
 
 ## 🔮 Future Work
 
-- Integrate **additional sensors** (LiDAR, radar) for multi-modal detection.
-- Expand **synthetic data** to simulate a wider range of weather conditions.
-- Optimize models for **edge devices** (real-time deployment).
-- Explore **YOLO variants** (YOLOv11, YOLO-NAS) for faster inference.
-- Add **multi-language support** for global usability.
+- Integrate LiDAR and radar data for multi-modal accident detection.
+- Improve robustness under extreme weather conditions.
+- Optimize the framework for deployment on edge devices.
+- Evaluate newer object detection architectures such as YOLOv11 and YOLO-NAS.
 
 ---
 
-## 👩‍💻 My Role
+## 🏆 Research Impact
 
-As the lead researcher and developer, I was responsible for:
+This work demonstrates the effectiveness of combining **object detection** and **deep image classification** to improve vehicle accident detection under adverse weather conditions.
 
-- Designing the **hybrid deep learning framework**.
-- Collecting and annotating the **dataset** (3,480 images).
-- Training and fine-tuning **YOLOv10** and **VGG19** models on Google Colab.
-- Performing **data preprocessing** (dehazing, contrast adjustment).
-- Analyzing **performance metrics** (precision, recall, accuracy, mAP, F1-score).
-- Writing the **full research paper** and interpreting results.
+Potential applications include:
 
----
-
-## 🏆 Significance
-
-This research contributes to **intelligent transportation systems** by providing a reliable tool for real-time accident identification under adverse weather conditions. It supports:
-
-- **Faster emergency response.**
-- **Enhanced road safety.**
-- **Reduced false positives** compared to single-model approaches.
-- **Alignment with Vision 2030** digital transformation goals.
+- 🚑 Intelligent emergency response systems
+- 🚗 Autonomous driving
+- 📹 Smart traffic surveillance
+- 🌧️ Weather-aware road safety monitoring
 
 ---
 
-## 📫 Connect with Me
+## 📫 Contact
 
-- **LinkedIn:** [https://linkedin.com/in/[your-username]](https://linkedin.com/in/[your-username])
-- **GitHub:** [https://github.com/YaraAlansari-CS](https://github.com/YaraAlansari-CS)
-- **Email:** [your-email@example.com](mailto:your-email@example.com)
+- **GitHub:** [YaraAlansari-CS](https://github.com/YaraAlansari-CS)
+- **LinkedIn:** [Yara Alansari](https://www.linkedin.com/in/yara-alansari-64b17a317)
+- **Email:** [yara.alansari01@gmail.com](mailto:yara.alansari01@gmail.com)
 
 ---
 
-**⭐ If you find this research valuable, don't forget to give it a star!**
+⭐ **If you found this research interesting, consider giving this repository a star!**
