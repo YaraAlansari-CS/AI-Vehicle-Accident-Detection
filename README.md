@@ -82,7 +82,7 @@ Compared with baseline CNN architectures, VGG19 consistently achieved the highes
 ### Sample Prediction
 
 <p align="center">
-  <img src="./assets/sample_prediction.png" width="750">
+  <img src="./assets/sample_prediction.png.jpeg" width="750">
 </p>
 
 Example predictions produced by the YOLOv10 model for accident detection under different weather conditions.
@@ -92,7 +92,7 @@ Example predictions produced by the YOLOv10 model for accident detection under d
 ### Confusion Matrix (Epoch 200)
 
 <p align="center">
-  <img src="./assets/confusion_matrix.png" width="500">
+  <img src="./assets/confusion_matrix.png.jpeg" width="500">
 </p>
 
 The confusion matrix illustrates the final classification performance of the best-performing YOLOv10 model.
@@ -102,7 +102,7 @@ The confusion matrix illustrates the final classification performance of the bes
 ### Training Curves
 
 <p align="center">
-  <img src="./assets/training_curves.png" width="750">
+  <img src="./assets/training_curves.png.jpeg" width="750">
 </p>
 
 Training curves showing model convergence and performance improvements over 200 training epochs.
