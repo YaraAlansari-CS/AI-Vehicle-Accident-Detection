@@ -29,9 +29,7 @@ The proposed framework contributes to safer roads by supporting autonomous drivi
 
 ## 🔄 Proposed Framework
 
-<p align="center">
-  <img src="./assets/workflow.png" width="900">
-</p>
+![Workflow](./assets/workflow.png)
 
 The proposed framework integrates image preprocessing, YOLOv10 object detection, and VGG19 classification to improve accident detection performance under adverse weather conditions.
 
