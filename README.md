@@ -29,9 +29,39 @@ The proposed framework contributes to safer roads by supporting autonomous drivi
 
 ## 🔄 Proposed Framework
 
-<p align="center">
-  <img src="./assets/workflow.jpeg" width="900">
-</p>
+┌─────────────────────────────┐
+│         Input Image         │
+└─────────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│    Image Preprocessing      │
+│ • Dehazing                  │
+│ • Contrast Enhancement      │
+└─────────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│          YOLOv10            │
+│      Object Detection       │
+└─────────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│ Detected Vehicle/Accident   │
+│          Region             │
+└─────────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│           VGG19             │
+│       Classification        │
+└─────────────────────────────┘
+               │
+               ▼
+┌─────────────────────────────┐
+│ Accident / Non-Accident     │
+└─────────────────────────────┘
 
 The proposed framework integrates image preprocessing, YOLOv10 object detection, and VGG19 classification to improve accident detection performance under adverse weather conditions.
 
