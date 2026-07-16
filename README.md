@@ -29,6 +29,7 @@ The proposed framework contributes to safer roads by supporting autonomous drivi
 
 ## 🔄 Proposed Framework
 
+```
 ┌─────────────────────────────┐
 │         Input Image         │
 └─────────────────────────────┘
@@ -62,6 +63,8 @@ The proposed framework contributes to safer roads by supporting autonomous drivi
 ┌─────────────────────────────┐
 │ Accident / Non-Accident     │
 └─────────────────────────────┘
+
+```
 
 The proposed framework integrates image preprocessing, YOLOv10 object detection, and VGG19 classification to improve accident detection performance under adverse weather conditions.
 
